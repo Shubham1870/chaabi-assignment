@@ -1,0 +1,273 @@
+Q-1-
+
+Answer-1
+
+def selection_sort(arr):
+
+    n = len(arr)
+
+    for i in range(n):
+
+        min_idx = i
+
+        for j in range(i+1, n):
+
+            if arr[j] < arr[min_idx]:
+
+                min_idx = j
+
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+
+    return arr
+
+
+
+input_list = [5, 416, 54, 21, 6135, 15, 741]
+
+sorted_list = selection_sort(input_list)
+
+print(sorted_list)
+
+
+
+q2-
+
+answer-2
+
+def get_file_types(extension_type_str, file_list):
+
+    extension_type_list = extension_type_str.split(';')
+
+    extension_type_dict = {}
+
+    for extension_type in extension_type_list:
+
+        extension, file_type = extension_type.split(',')
+
+        extension_type_dict[extension] = file_type
+
+   
+
+    file_type_dict = {}
+
+    for file in file_list:
+
+        file_extension = file.split('.')[-1]
+
+        if file_extension in extension_type_dict:
+
+            file_type_dict[file] = extension_type_dict[file_extension]
+
+        else:
+
+            file_type_dict[file] = "unknown"
+
+   
+
+    return file_type_dict
+
+
+
+extension_type_str = "xls,spreadsheet;xlsx,spreadsheet;jpg,image"
+
+file_list = ["abc.jpg", "xyz.xls", "text.csv", "123"]
+
+file_type_dict = get_file_types(extension_type_str, file_list)
+
+print(file_type_dict)
+
+
+
+q3-
+
+answer-3
+
+def sort_list_of_dicts(list_of_dicts, key):
+
+    sorted_list = sorted(list_of_dicts, key=lambda x: x[key])
+
+    return sorted_list
+
+
+
+
+
+input_list = [
+
+    {"fruit": "orange", "color": "orange"},
+
+    {"fruit": "apple", "color": "red"},
+
+    {"fruit": "banana", "color": "yellow"},
+
+    {"fruit": "blueberry", "color": "blue"}
+
+]
+
+sorted_list = sort_list_of_dicts(input_list, "fruit")
+
+print(sorted_list)
+
+
+
+input_list = [
+
+    {"fruit": "orange", "color": "orange"},
+
+    {"fruit": "apple", "color": "red"},
+
+    {"fruit": "banana", "color": "yellow"},
+
+    {"fruit": "blueberry", "color": "blue"}
+
+]
+
+sorted_list = sort_list_of_dicts(input_list, "color")
+
+print(sorted_list)
+
+
+
+
+
+q4-
+
+answer-4
+
+def switch_key_value(dict_obj):
+    return {value: key for key, value in dict_obj.items()}
+
+
+dict_obj = {
+    "key1": "value1",
+    "key2": "value2",
+    "key3": "value3",
+    "key4": "value4",
+    "key5": "value5"
+}
+switched_dict = switch_key_value(dict_obj)
+print(switched_dict)
+
+
+q-5
+answer-5-
+def find_common_and_not_common(list1, list2):
+    common_elements = list(set(list1) & set(list2))
+    not_common_elements = list(set(list1) ^ set(list2))
+    return common_elements, not_common_elements
+
+
+mainstream = ["One Punch Man", "Attack On Titan", "One Piece", "Sword Art Online", "Bleach", "Dragon Ball Z", "One Piece"]
+must_watch = ["Full Metal Alchemist", "Code Geass", "Death Note", "Stein's Gate", "The Devil is a Part Timer!", "One Piece", "Attack On Titan"]
+common, not_common = find_common_and_not_common(mainstream, must_watch)
+print(common)
+print(not_common)
+
+
+q-6
+answer-6
+
+def get_every_other_sublist(lst, start_index, end_index):
+    return lst[start_index:end_index:2]
+
+
+lst = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
+sublist = get_every_other_sublist(lst, 2, 9)
+print(sublist)
+
+q-7 answer-7
+
+factorial = lambda n: 1 if n == 0 else n * factorial(n - 1)
+
+# Test the lambda function
+print(factorial(5))  # Output: 120
+
+
+q-8 
+answer-8
+
+A0 = dict(zip(('a', 'b', 'c', 'd', 'e'), (1, 2, 3, 4, 5)))
+# A0 = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+
+A1 = range(10)
+# A1 = range(0, 10)
+
+A2 = sorted([i for i in A1 if i in A0])
+# A2 = []
+
+A3 = sorted([A0[s] for s in A0])
+# A3 = [1, 2, 3, 4, 5]
+
+A4 = [i for i in A1 if i in A3]
+# A4 = [1, 2, 3, 4, 5]
+
+A5 = {i: i*i for i in A1}
+# A5 = {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+
+A6 = [[i, i*i] for i in A1]
+# A6 = [[0, 0], [1, 1], [2, 4], [3, 9], [4, 16], [5, 25], [6, 36], [7, 49], [8, 64], [9, 81]]
+
+from functools import reduce
+A7 = reduce(lambda x, y: x + y, [10, 23, -45, 33])
+# A7 = 21
+
+A8 = map(lambda x: x*2, [1, 2, 3, 4])
+# A8 = [2, 4, 6, 8]
+
+
+q-9
+answer-9
+
+from datetime import datetime, timedelta
+
+def check_date_difference(from_date, to_date, difference):
+    date_format = '%y-%m-%d'
+    from_date_obj = datetime.strptime(from_date, date_format)
+    to_date_obj = datetime.strptime(to_date, date_format)
+    delta = abs(from_date_obj - to_date_obj)
+    return delta.days < difference
+
+
+print(check_date_difference('21-01-01', '21-01-10', 7))  # Output: True
+print(check_date_difference('21-01-01', '21-01-10', 5))  # Output: False
+
+q-10 
+answer-10
+
+from datetime import datetime, timedelta
+
+def calculate_previous_date(date, n):
+    date_format = '%y-%m-%d'
+    date_obj = datetime.strptime(date, date_format)
+    previous_date = date_obj - timedelta(days=n)
+    return previous_date.strftime(date_format)
+
+
+print(calculate_previous_date('16-12-10', 11))  # Output: '16-11-29'
+
+
+q-11
+answer-11
+def f(x, l=[]):
+    for i in range(x):
+        l.append(i*i)
+    print(l)
+
+f(2)
+# Output: [0, 1]
+
+f(3, [3, 2, 1])
+# Output: [3, 2, 1, 0,
+
+
+
+
+
+
+
+
+
+
+
+
+
